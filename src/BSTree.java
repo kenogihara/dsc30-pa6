@@ -179,12 +179,43 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
      * 
      * @param key
      * @return true if insertion is successful and false otherwise
+     * @throws NullPointerException if key is null
      */
     public boolean insert(T key) {
+        root = insertR(root, key);
+        if (root != null) {
+            nelems++;
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * Helper method that allows us to take hold of root.
+     *
+     * @param root
+     * @param key
+     * @return true if insertion is successful and false otherwise
+     * @throws NullPointerException if key is null
+     */
+    private BSTNode insertR(BSTNode root, T key) {
         if (key == null) {
             throw new NullPointerException("key is null");
         }
-
+        if (root == null) {
+            root = new BSTNode(null, null, new LinkedList<>(), key);
+        }
+        if (key.compareTo(root.getKey()) < 0) {
+            root.setLeft(insertR(root.getLeft(), key));
+        }
+        if (key.compareTo(root.getKey()) > 0) {
+            root.setRight(insertR(root.getRight(), key));
+        }
+        else {
+            return null;
+        }
+        return root;
     }
 
     /**
