@@ -181,8 +181,8 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
      * @return true if insertion is successful and false otherwise
      * @throws NullPointerException if key is null
      */
-    public boolean insert(T key) {
-        root = insertR(root, key);
+    public boolean insert(T key) throws NullPointerException {
+        root = insertH(root, key);
         if (root != null) {
             nelems++;
             return true;
@@ -194,12 +194,12 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
     /**
      * Helper method that allows us to take hold of root.
      *
-     * @param root
-     * @param key
+     * @param root of the BST
+     * @param key that we are seeking to insert
      * @return true if insertion is successful and false otherwise
      * @throws NullPointerException if key is null
      */
-    private BSTNode insertR(BSTNode root, T key) {
+    private BSTNode insertH(BSTNode root, T key) {
         if (key == null) {
             throw new NullPointerException("key is null");
         }
@@ -207,10 +207,10 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
             root = new BSTNode(null, null, new LinkedList<>(), key);
         }
         if (key.compareTo(root.getKey()) < 0) {
-            root.setLeft(insertR(root.getLeft(), key));
+            root.setLeft(insertH(root.getLeft(), key));
         }
         if (key.compareTo(root.getKey()) > 0) {
-            root.setRight(insertR(root.getRight(), key));
+            root.setRight(insertH(root.getRight(), key));
         }
         else {
             return null;
@@ -226,7 +226,33 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
      * @throws NullPointerException If key is null
      */
     public boolean findKey(T key) {
-        /* TODO */
+        return findKeyH(root, key);
+    }
+
+    /**
+     * Helper method that allows us to take hold of root.
+     *
+     * @param key To be searched
+     * @param root Node of the BST
+     * @return True if the 'key' is found, false otherwise
+     * @throws NullPointerException If key is null
+     */
+    public boolean findKeyH(BSTNode root, T key) {
+        if (key == null) {
+            throw new NullPointerException("key is null");
+        }
+        if (root == null) {
+            return false;
+        }
+        if (key.compareTo(root.getKey()) < 0) {
+            findKeyH(root.getLeft(), key);
+        }
+        if (key.compareTo(root.getKey()) > 0) {
+            findKeyH(root.getRight(), key);
+        }
+        else {
+            return true;
+        }
         return false;
     }
 
