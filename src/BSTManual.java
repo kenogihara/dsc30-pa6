@@ -8,8 +8,8 @@ public class BSTManual {
 
 /**
  * TODO
- * @author TODO
- * @since  TODO
+ * @author Ken Ogihara
+ * @since  ${2/18/24}
  */
 
 // No style for this file.	
@@ -29,7 +29,11 @@ public static ArrayList<String>  insertElements() {
 	 * worksheet
 	 */
 
-	//TODO: add strings that represent the BST after insertion. 
+	answer_pr1.add("95");
+	answer_pr1.add("12, 100");
+	answer_pr1.add("4, 62, X, 180");
+	answer_pr1.add("X, X, 50, X, X, 128");
+	answer_pr1.add("X, X, X, X, 20, 53, X, X, X, X, X, X, X, X, X, X");
 	return answer_pr1;
 
 }
@@ -43,7 +47,10 @@ public static ArrayList<String>  deleteElements() {
 	 * of how to properly enter your answers
 	 */
 
-	//TODO: add strings that represent the BST after 5 deletions. 
+	answer_pr2.add("60");
+	answer_pr2.add("40, 76");
+	answer_pr2.add("25, X, 62, 94");
+	answer_pr2.add("X, 31, X, X, X, X, X, X");
 	return answer_pr2;
 
 }
@@ -63,7 +70,9 @@ public static ArrayList<String>  traversals() {
 	 * 
 	 * replace "1, 2, 3, 4, 5" with your actual answers
 	 */
-	//TODO: add 3 strings that represent 3 traversals. 
+	answer_pr3.add("4, 19, 22, 28, 39, 56, 64, 68, 93, 95, 96, 97, 98");
+	answer_pr3.add("39, 19, 4, 22, 28, 93, 64, 56, 68, 96, 95, 98, 97");
+	answer_pr3.add("4, 28, 22, 19, 56, 68, 64, 95, 97, 98, 96, 93, 39");
 	return answer_pr3;
 
 }
