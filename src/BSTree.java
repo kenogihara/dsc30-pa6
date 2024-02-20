@@ -245,15 +245,14 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
             return false;
         }
         if (key.compareTo(root.getKey()) < 0) {
-            findKeyH(root.getLeft(), key);
+            return findKeyH(root.getLeft(), key);
         }
         if (key.compareTo(root.getKey()) > 0) {
-            findKeyH(root.getRight(), key);
+            return findKeyH(root.getRight(), key);
         }
         else {
             return true;
         }
-        return false;
     }
 
     /**
@@ -261,11 +260,20 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
      *
      * @param key  Target key
      * @param data To be added to key's LinkedList
-     * @throws NullPointerException     If eaither key or data is null
+     * @throws NullPointerException If either key or data is null
      * @throws IllegalArgumentException If key is not found in the BST
      */
     public void insertData(T key, T data) {
-        /* TODO */
+        if (key == null || data == null) {
+            throw new NullPointerException("key is null");
+        }
+        if (!findKey(key)) {
+            throw new IllegalArgumentException("key is not found in BST");
+        }
+        else {
+
+        }
+
     }
 
     /**
