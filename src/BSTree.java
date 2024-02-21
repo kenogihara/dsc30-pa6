@@ -310,10 +310,10 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
         }
         if (!findKey(key)) {
             throw new IllegalArgumentException("key is not found in BST");
+        } else {
+            return root.getDataList();
         }
-        else {
-           return root.getDataList();
-        }
+    }
 
     /**
      * Return the height of the tree
@@ -321,7 +321,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
      * @return The height of the tree, -1 if BST is empty
      */
     public int findHeight() {
-        return
+        return this.findHeightHelper(root);
     }
 
     /**
@@ -331,34 +331,44 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
      * @return The height of the tree, -1 if BST is empty
      */
     private int findHeightHelper(BSTNode root) {
-        int empty = -1;
         if (root == null) {
-            return empty;
+            return -1;
         }
-        return 1 + Math.max(findHeightHelper(root.getRight()), findHeightHelper(root.getLeft()));
+        int leftHeight = findHeightHelper(root.getLeft());
+        int rightHeight = findHeightHelper(root.getRight());
+        return Math.max(leftHeight, rightHeight) + 1;
     }
 
     /* * * * * BST Iterator * * * * */
 
     public class BSTree_Iterator implements Iterator<T> {
+        private Stack<BSTNode> stack;
         public BSTree_Iterator() {
-            /* TODO */
+            stack = new Stack<>();
         }
 
+        private void leftMostPath(BSTNode root) {
+            while (root != null) {
+               stack.push(root);
+               root = root.getLeft();
+            }
+        }
         public boolean hasNext() {
-            /* TODO */
-            return false;
+            return !stack.isEmpty();
         }
 
         public T next() {
-            /* TODO */
-            return null;
+            if (!hasNext()) {
+                throw new NoSuchElementException("no next item");
+            }
+            BSTNode currentNode = stack.pop();
+            leftMostPath(currentNode.getRight());
+            return currentNode.getKey();
         }
     }
 
     public Iterator<T> iterator() {
-        /* TODO */
-        return null;
+        return new BSTree_Iterator();
     }
 
     /* * * * * Extra Credit Methods * * * * */
