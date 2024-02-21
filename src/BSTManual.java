@@ -31,8 +31,8 @@ public static ArrayList<String>  insertElements() {
 
 	answer_pr1.add("95");
 	answer_pr1.add("12, 100");
-	answer_pr1.add("4, 62, X, 180");
-	answer_pr1.add("X, X, 50, X, X, 128");
+	answer_pr1.add("X, 62, X, 180");
+	answer_pr1.add("X, X, 50, X, X, X, 128, X");
 	answer_pr1.add("X, X, X, X, 20, 53, X, X, X, X, X, X, X, X, X, X");
 	return answer_pr1;
 
@@ -47,9 +47,9 @@ public static ArrayList<String>  deleteElements() {
 	 * of how to properly enter your answers
 	 */
 
-	answer_pr2.add("60");
+	answer_pr2.add("62");
 	answer_pr2.add("40, 76");
-	answer_pr2.add("25, X, 62, 94");
+	answer_pr2.add("25, X, X, 94");
 	answer_pr2.add("X, 31, X, X, X, X, X, X");
 	return answer_pr2;
 
