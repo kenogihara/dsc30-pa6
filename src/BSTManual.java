@@ -1,5 +1,5 @@
 /**
- * TODO: file header
+ * Implementation of BSTManual Class.
  */
 
 import java.util.*;
@@ -7,7 +7,6 @@ import java.util.*;
 public class BSTManual {
 
 /**
- * TODO
  * @author Ken Ogihara
  * @since  ${2/18/24}
  */
