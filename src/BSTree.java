@@ -5,6 +5,8 @@
 
 import java.util.*;
 
+import static java.util.Collections.max;
+
 /**
  * Binary search tree implementation.
  * 
@@ -237,7 +239,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
      * @return True if the 'key' is found, false otherwise
      * @throws NullPointerException If key is null
      */
-    public boolean findKeyH(BSTNode root, T key) {
+    private boolean findKeyH(BSTNode root, T key) {
         if (key == null) {
             throw new NullPointerException("key is null");
         }
@@ -271,10 +273,28 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
             throw new IllegalArgumentException("key is not found in BST");
         }
         else {
-
+            insertDataH(root, key, data);
         }
 
     }
+
+    private BSTNode insertDataH(BSTNode root, T key, T data) {
+        if (root == null) {
+            return new BSTNode(null, null, new LinkedList<>(), key);
+        }
+        if (key.compareTo(root.getKey()) < 0) {
+            return insertDataH(root.getLeft(), key, data);
+        }
+        if (key.compareTo(root.getKey()) > 0) {
+            return insertDataH(root.getRight(), key, data);
+        }
+        else {
+            root.addNewInfo(data);
+        }
+        return root;
+    }
+
+
 
     /**
      * Return the LinkedList of the node with key value 'key'
@@ -285,9 +305,15 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
      * @throws IllegalArgumentException If key is not found in the BST
      */
     public LinkedList<T> findDataList(T key) {
-        /* TODO */
-        return null;
-    }
+        if (key == null) {
+            throw new NullPointerException("key is null");
+        }
+        if (!findKey(key)) {
+            throw new IllegalArgumentException("key is not found in BST");
+        }
+        else {
+           return root.getDataList();
+        }
 
     /**
      * Return the height of the tree
@@ -295,8 +321,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
      * @return The height of the tree, -1 if BST is empty
      */
     public int findHeight() {
-        /* TODO */
-        return -1;
+        return
     }
 
     /**
@@ -306,8 +331,11 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
      * @return The height of the tree, -1 if BST is empty
      */
     private int findHeightHelper(BSTNode root) {
-        /* TODO */
-        return -1;
+        int empty = -1;
+        if (root == null) {
+            return empty;
+        }
+        return 1 + Math.max(findHeightHelper(root.getRight()), findHeightHelper(root.getLeft()));
     }
 
     /* * * * * BST Iterator * * * * */
