@@ -173,6 +173,9 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
      * @return The BST size
      */
     public int getSize() {
+        if (root == null) {
+            return 0;
+        }
         return nelems;
     }
 
@@ -205,6 +208,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
             root = new BSTNode(null, null, new LinkedList<>(), key);
             nelems++;
         }
+
         if (key.compareTo(root.getKey()) < 0) {
             root.setLeft(insertH(root.getLeft(), key));
             nelems++;

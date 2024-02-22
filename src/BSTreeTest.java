@@ -22,6 +22,8 @@ class BSTreeTest {
 
     @org.junit.jupiter.api.Test
     void getSize() {
+        dictionary.insert("science");
+        dictionary.insert("people");
         assertEquals(2, dictionary.getSize());
     }
 
