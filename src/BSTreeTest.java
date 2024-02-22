@@ -24,11 +24,13 @@ class BSTreeTest {
     void getSize() {
         dictionary.insert("science");
         dictionary.insert("people");
-        assertEquals(2, dictionary.getSize());
+        dictionary.insert("coolio");
+        assertEquals(3, dictionary.getSize());
     }
 
     @org.junit.jupiter.api.Test
     void insert() {
+
     }
 
     @org.junit.jupiter.api.Test

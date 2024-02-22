@@ -204,18 +204,15 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
         if (key == null) {
             throw new NullPointerException("key is null");
         }
-        if (root == null && nelems == 0) {
+        if (root == null || nelems == 0) {
             root = new BSTNode(null, null, new LinkedList<>(), key);
             nelems++;
         }
-
         if (key.compareTo(root.getKey()) < 0) {
             root.setLeft(insertH(root.getLeft(), key));
-            nelems++;
         }
         if (key.compareTo(root.getKey()) > 0) {
             root.setRight(insertH(root.getRight(), key));
-            nelems++;
         }
         return root;
     }
