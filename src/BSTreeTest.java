@@ -74,6 +74,21 @@ class BSTreeTest {
 
     @org.junit.jupiter.api.Test
     void findHeight() {
+        numbers.insert(10);
+        numbers.insert(9);
+        numbers.insert(8);
+        numbers.insert(7);
+        numbers.insert(6);
+        numbers.insert(11);
+        numbers.insert(12);
+        numbers.insert(13);
+        assertEquals(4, numbers.findHeight());
+        assertEquals(-1, dictionary.findHeight());
+        dictionary.insert("word!");
+        assertEquals(0, dictionary.findHeight());
+        dictionary.insert("xylophone");
+        dictionary.insert("victory");
+        assertEquals(1, dictionary.findHeight());
     }
 
     @org.junit.jupiter.api.Test
