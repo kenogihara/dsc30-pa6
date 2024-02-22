@@ -122,6 +122,13 @@ class BSTreeTest {
 
     @Test
     void iterator() {
+        numbers.insert(92);
+        numbers.insert(44);
+        numbers.insert(100);
+        numbers.insert(10);
+        numbers.insert(11);
+        numbers.insert(50);
+        numbers.insert(3);
 
     }
 
