@@ -5,6 +5,7 @@
 
 import java.util.*;
 
+import static java.util.Collections.EMPTY_LIST;
 import static java.util.Collections.max;
 
 /**
@@ -129,7 +130,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
          * @param data New data to be appended
          */
         public void addNewInfo(T data) {
-            this.dataList.add(data);
+            dataList.add(data);
         }
 
         /**
@@ -305,13 +306,34 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
      * @throws IllegalArgumentException If key is not found in the BST
      */
     public LinkedList<T> findDataList(T key) {
+        return findDataListH(root, key);
+    }
+
+
+    /**
+     * Helper method that takes hold of root
+     *
+     * @param key Target key
+     * @param root node of the BST
+     * @return LinkedList of the node whose key value is 'key'
+     * @throws NullPointerException     If key is null
+     * @throws IllegalArgumentException If key is not found in the BST
+     */
+    public LinkedList<T> findDataListH(BSTNode root,T key) {
         if (key == null) {
             throw new NullPointerException("key is null");
         }
         if (!findKey(key)) {
             throw new IllegalArgumentException("key is not found in BST");
-        } else {
-            return root.getDataList();
+        }
+        if (key.compareTo(root.getKey()) < 0) {
+            return findDataListH(root.getLeft(), key);
+        }
+        if (key.compareTo(root.getKey()) > 0) {
+            return findDataListH(root.getRight(), key);
+        }
+        else {
+            return root.dataList;
         }
     }
 
