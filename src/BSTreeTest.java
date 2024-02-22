@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BSTreeTest {
@@ -13,7 +14,7 @@ class BSTreeTest {
         friends = new BSTree<>();
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getRoot() {
         assertNull(dictionary.getRoot());
         dictionary.insert("science");
@@ -22,7 +23,7 @@ class BSTreeTest {
         assertEquals(dictionary.getRoot().getLeft().getKey(), "people");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getSize() {
         dictionary.insert("science");
         dictionary.insert("people");
@@ -30,7 +31,7 @@ class BSTreeTest {
         assertEquals(3, dictionary.getSize());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void insert() {
         assertNull(numbers.getRoot());
         numbers.insert(92);
@@ -45,7 +46,7 @@ class BSTreeTest {
         assertTrue(numbers.insert(7));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void findKey() {
         dictionary.insert("random");
         dictionary.insert("data science");
@@ -53,12 +54,12 @@ class BSTreeTest {
         dictionary.insert("binary");
         dictionary.insert("sorting");
         assertTrue(dictionary.findKey("random"));
-        assertFalse(dictionary.findKey("heap"));
+        assertFalse(dictionary.findKey("Heaps"));
         assertThrows(NullPointerException.class, () -> dictionary.insert(null));
         assertTrue(dictionary.findKey("binary"));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void insertData() {
         numbers.insert(2);
         numbers.insert(3);
@@ -78,11 +79,27 @@ class BSTreeTest {
         assertEquals("Dancing", friends.findDataList("Aria").get(1));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void findDataList() {
+        assertThrows(NullPointerException.class, () -> friends.findDataList(null));
+        assertThrows(IllegalArgumentException.class, () -> friends.findDataList("Andrew"));
+
+        friends.insert("Andrew");
+        friends.insert("Aria");
+        friends.insert("Ricky");
+        friends.insertData("Andrew", "Korean");
+        friends.insertData("Aria", "Japanese");
+        friends.insertData("Ricky", "Korean");
+        friends.insertData("Ricky", "Studying");
+        friends.getRoot().getRight().getRight().addNewInfo("5'7");
+
+        //assertEquals("Korean, Studying, 5'7", friends.findDataList("Ricky"));
+        assertEquals("Japanese", friends.findDataList("Aria").getFirst());
+        assertThrows(IllegalArgumentException.class, () -> friends.findDataList("aria"));
+
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void findHeight() {
         numbers.insert(10);
         numbers.insert(9);
@@ -103,15 +120,16 @@ class BSTreeTest {
         assertEquals(2, dictionary.findHeight());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void iterator() {
+
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void intersection() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void levelMax() {
     }
 }
