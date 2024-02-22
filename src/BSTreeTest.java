@@ -30,11 +30,25 @@ class BSTreeTest {
 
     @org.junit.jupiter.api.Test
     void insert() {
-
+        assertNull(numbers.getRoot());
+        numbers.insert(92);
+        numbers.insert(44);
+        assertEquals(44, numbers.getRoot().getLeft().getKey());
+        numbers.insert(100);
+        numbers.insert(10);
+        assertEquals(92, numbers.getRoot().getKey());
+        assertThrows(NullPointerException.class, () -> numbers.insert(null));
     }
 
     @org.junit.jupiter.api.Test
     void findKey() {
+        dictionary.insert("random");
+        dictionary.insert("data science");
+        dictionary.insert("heaps");
+        dictionary.insert("binary");
+        dictionary.insert("sorting");
+        assertTrue(dictionary.findKey("random"));
+        assertFalse(dictionary.findKey("heap"));
     }
 
     @org.junit.jupiter.api.Test
