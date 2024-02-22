@@ -38,6 +38,8 @@ class BSTreeTest {
         numbers.insert(10);
         assertEquals(92, numbers.getRoot().getKey());
         assertThrows(NullPointerException.class, () -> numbers.insert(null));
+        assertFalse(numbers.insert(100));
+        assertFalse(numbers.insert(10));
     }
 
     @org.junit.jupiter.api.Test
@@ -49,10 +51,21 @@ class BSTreeTest {
         dictionary.insert("sorting");
         assertTrue(dictionary.findKey("random"));
         assertFalse(dictionary.findKey("heap"));
+        assertThrows(NullPointerException.class, () -> dictionary.insert(null));
+        assertTrue(dictionary.findKey("binary"));
     }
 
     @org.junit.jupiter.api.Test
     void insertData() {
+        numbers.insert(2);
+        numbers.insert(3);
+        assertThrows(NullPointerException.class, () -> numbers.insertData(null, 1));
+        assertThrows(NullPointerException.class, () -> numbers.insertData(1, null));
+        assertThrows(IllegalArgumentException.class, () -> numbers.insertData(1, 1));
+        numbers.insertData(2, 2);
+        numbers.insertData(3, 3);
+
+
     }
 
     @org.junit.jupiter.api.Test

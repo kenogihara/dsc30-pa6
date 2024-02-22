@@ -187,6 +187,9 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
      * @throws NullPointerException if key is null
      */
     public boolean insert(T key) throws NullPointerException {
+        if (findKey(key)) {
+            return false;
+        }
         root = insertH(root, key);
         return root != null;
     }
@@ -224,7 +227,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
      * @return True if the 'key' is found, false otherwise
      * @throws NullPointerException If key is null
      */
-    public boolean findKey(T key) {
+    public boolean findKey(T key) throws NullPointerException {
         return findKeyH(root, key);
     }
 
