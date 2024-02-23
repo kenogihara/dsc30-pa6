@@ -125,16 +125,21 @@ class BSTreeTest {
 
     @Test
     void iterator() {
-        Iterator<Integer> iteratorN = numbers.iterator();
         numbers.insert(92);
         numbers.insert(44);
-
         numbers.insert(100);
         numbers.insert(10);
         numbers.insert(11);
         numbers.insert(50);
         numbers.insert(3);
-        System.out.println(iteratorN.hasNext());
+
+        Iterator<Integer> iteratorN = numbers.iterator();
+        //[3, 10, 11, 44 50, 92, 100]
+
+        assertEquals(3, iteratorN.next());
+
+        System.out.println(iteratorN);
+
     }
 
     @Test
