@@ -367,6 +367,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
         private Stack<BSTNode> stack;
         public BSTree_Iterator() {
             stack = new Stack<>();
+
         }
 
         private void leftMostPath(BSTNode root) {
