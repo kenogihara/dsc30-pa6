@@ -1,8 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import java.sql.Array;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -142,16 +141,15 @@ class BSTreeTest {
         while (iteratorN.hasNext()) {
             inOrderTraversal.add(iteratorN.next());
         }
-
-        assertEquals([3, 10, 11, 44 50, 92, 100], inOrderTraversal);
-        assertEquals(3, iteratorN.next());
-
-        System.out.println(iteratorN);
-
+        assertEquals(Arrays.asList(3, 10, 11, 44, 50, 92, 100), inOrderTraversal);
+        assertThrows(NoSuchElementException.class, () -> iteratorN.next());
     }
 
     @Test
     void hasNext() {
+        friends.insert("aria");
+        Iterator<String> iteratorF = friends.iterator();
+
 
     }
 
