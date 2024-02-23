@@ -1,8 +1,5 @@
 import org.junit.jupiter.api.Test;
-
-import java.sql.Array;
 import java.util.*;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class BSTreeTest {
@@ -174,7 +171,30 @@ class BSTreeTest {
 
     @Test
     void next() {
+        numbers.insert(100);
+        numbers.insert(50);
+        numbers.insert(60);
+        numbers.insert(10);
+        numbers.insert(11);
+        numbers.insert(446);
+        numbers.insert(44);
+        numbers.insert(222);
 
+        Iterator<Integer> iteratorN = numbers.iterator();
+
+        assertEquals(10, iteratorN.next());
+        assertEquals(11, iteratorN.next());
+        assertEquals(44, iteratorN.next());
+        assertEquals(50, iteratorN.next());
+        assertEquals(60, iteratorN.next());
+        assertEquals(100, iteratorN.next());
+        assertEquals(222, iteratorN.next());
+        assertEquals(446, iteratorN.next());
+
+        assertThrows(NoSuchElementException.class, () -> iteratorN.next());
+
+        Iterator<String> iteratorF = friends.iterator();
+        assertThrows(NoSuchElementException.class, () -> iteratorF.next());
     }
 
     @Test
