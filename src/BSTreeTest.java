@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Test;
 
+import java.sql.Array;
 import java.util.Iterator;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -135,7 +137,13 @@ class BSTreeTest {
 
         Iterator<Integer> iteratorN = numbers.iterator();
         //[3, 10, 11, 44 50, 92, 100]
+        List<Integer> inOrderTraversal = new ArrayList<>();
 
+        while (iteratorN.hasNext()) {
+            inOrderTraversal.add(iteratorN.next());
+        }
+
+        assertEquals([3, 10, 11, 44 50, 92, 100], inOrderTraversal);
         assertEquals(3, iteratorN.next());
 
         System.out.println(iteratorN);
