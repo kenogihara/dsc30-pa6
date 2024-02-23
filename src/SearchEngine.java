@@ -1,6 +1,6 @@
 /*
- * Name: TODO
- * PID:  TODO
+ * Name: Ken Ogihara
+ * PID:  A16969236
  */
 
 import java.io.File;
@@ -12,8 +12,8 @@ import java.util.Scanner;
 /**
  * Search Engine implementation.
  * 
- * @author TODO
- * @since  TODO
+ * @author Ken Ogihara
+ * @since  ${2/23/24}
  */
 public class SearchEngine {
 

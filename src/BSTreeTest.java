@@ -1,4 +1,7 @@
 import org.junit.jupiter.api.Test;
+
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BSTreeTest {
@@ -122,14 +125,16 @@ class BSTreeTest {
 
     @Test
     void iterator() {
-        
+        Iterator<Integer> iteratorN = numbers.iterator();
         numbers.insert(92);
         numbers.insert(44);
+
         numbers.insert(100);
         numbers.insert(10);
         numbers.insert(11);
         numbers.insert(50);
         numbers.insert(3);
+        System.out.println(iteratorN.hasNext());
     }
 
     @Test
