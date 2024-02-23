@@ -148,9 +148,28 @@ class BSTreeTest {
     @Test
     void hasNext() {
         friends.insert("aria");
+        friends.insert("andrew");
+        friends.insert("ricky");
+        friends.insert("dev");
+        friends.insert("vivian");
+        friends.insert("angie");
+        friends.insert("noah");
+
         Iterator<String> iteratorF = friends.iterator();
+        assertTrue(iteratorF.hasNext());
+        iteratorF.next();
+        iteratorF.next();
+        iteratorF.next();
+        iteratorF.next();
+        iteratorF.next();
+        iteratorF.next();
+        assertTrue(iteratorF.hasNext());
+        iteratorF.next();
+        assertFalse(iteratorF.hasNext());
 
+        Iterator<String> iteratorD = dictionary.iterator();
 
+        assertFalse(iteratorD.hasNext());
     }
 
     @Test
