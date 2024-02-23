@@ -5,9 +5,6 @@
 
 import java.util.*;
 
-import static java.util.Collections.EMPTY_LIST;
-import static java.util.Collections.max;
-
 /**
  * Binary search tree implementation.
  * 
