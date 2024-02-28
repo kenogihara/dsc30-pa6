@@ -43,7 +43,31 @@ public class SearchEngine {
                 String rating = scanner.nextLine().trim();
                 scanner.nextLine();
 
-                /* TODO */
+                for (String person : cast) {
+                    movieTree.insert(person);
+
+                    for (int i = 0; i < movieTree.getSize(); i++) {
+                        movieTree.insertData(person, movie);
+                    }
+                }
+
+                for (String company : studios) {
+                    studioTree.insert(company);
+
+                    for (int i = 0; i < studioTree.getSize(); i++) {
+                        studioTree.insertData(company, movie);
+                    }
+                }
+
+                for (String person : cast) {
+                    ratingTree.insert(person);
+
+                    for (int i = 0; i < ratingTree.getSize(); i++) {
+                        ratingTree.insertData(person, rating);
+                    }
+                }
+
+
                 // populate three trees with the information you just read
                 // hint: create a helper function and reuse it to build all three trees
 
