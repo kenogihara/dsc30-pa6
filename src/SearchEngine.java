@@ -44,33 +44,27 @@ public class SearchEngine {
                 scanner.nextLine();
 
                 for (String person : cast) {
-                    movieTree.insert(person);
-
-                    for (int i = 0; i < movieTree.getSize(); i++) {
-                        movieTree.insertData(person, movie);
+                    movieTree.insert(person.toLowerCase());
+                    if (!movieTree.findDataList(person.toLowerCase()).contains(movie)) {
+                        movieTree.insertData(person.toLowerCase(), movie);
                     }
                 }
 
-                for (String company : studios) {
-                    studioTree.insert(company);
-
-                    for (int i = 0; i < studioTree.getSize(); i++) {
-                        studioTree.insertData(company, movie);
+                for (String studio : studios) {
+                    studioTree.insert(studio.toLowerCase());
+                    if (!studioTree.findDataList(studio.toLowerCase()).contains(movie)) {
+                        studioTree.insertData(studio.toLowerCase(), movie);
                     }
                 }
 
                 for (String person : cast) {
-                    ratingTree.insert(person);
-
-                    for (int i = 0; i < ratingTree.getSize(); i++) {
-                        ratingTree.insertData(person, rating);
+                    ratingTree.insert(person.toLowerCase());
+                    if (!ratingTree.findDataList(person.toLowerCase()).contains(rating)) {
+                        ratingTree.insertData(person.toLowerCase(), rating);
                     }
                 }
-
-
                 // populate three trees with the information you just read
                 // hint: create a helper function and reuse it to build all three trees
-
             }
             scanner.close();
         } catch (FileNotFoundException e) {
@@ -91,6 +85,13 @@ public class SearchEngine {
         // process query
         String[] keys = query.toLowerCase().split(" ");
 
+        LinkedList<String> output = new LinkedList<>();
+        output.addAll(searchTree.findDataList(keys[0]));
+
+        for (int i = 1; i < keys.length; i++) {
+            output.retainAll(searchTree.findDataList(keys[i]));
+            output.addAll(searchTree.findDataList(keys[i]));
+        }
         // search and output intersection results
         // hint: list's addAll() and retainAll() methods could be helpful
 
@@ -123,7 +124,9 @@ public class SearchEngine {
      */
     public static void main(String[] args) {
 
-        /* TODO */
+        BSTree<String> movieTree = new BSTree<>();
+        BSTree<String> studioTree = new BSTree<>();
+        BSTree<String> ratingTree = new BSTree<>();
         // initialize search trees
 
         // process command line arguments
@@ -131,8 +134,19 @@ public class SearchEngine {
         int searchKind = Integer.parseInt(args[1]);
 
         // populate search trees
+        populateSearchTrees(movieTree, studioTree, ratingTree, fileName);
 
         // choose the right tree to query
-
+        switch (searchKind) {
+            case 0:
+                searchMyQuery(movieTree, Arrays.toString(args));
+                break;
+            case 1:
+                searchMyQuery(studioTree, Arrays.toString(args));
+                break;
+            case 2:
+                searchMyQuery(ratingTree, Arrays.toString(args));
+                break;
+        }
     }
 }
