@@ -92,13 +92,9 @@ public class SearchEngine {
         String[] keys = query.toLowerCase().split(" ");
 
         LinkedList<String> output = new LinkedList<>(searchTree.findDataList(keys[0]));
-        System.out.println(output);
         for (int i = 1; i < keys.length; i++) {
             LinkedList<String> list = searchTree.findDataList(keys[i]);
-            System.out.println(list);
-
             output.retainAll(searchTree.findDataList(keys[i]));
-            System.out.println(output);
         }
         // search and output intersection results
         // hint: list's addAll() and retainAll() methods could be helpful
