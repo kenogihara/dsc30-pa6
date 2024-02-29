@@ -44,21 +44,27 @@ public class SearchEngine {
                 scanner.nextLine();
 
                 for (String person : cast) {
-                    movieTree.insert(person.toLowerCase());
+                    if (!movieTree.findKey(person.toLowerCase())) {
+                        movieTree.insert(person.toLowerCase());
+                    }
                     if (!movieTree.findDataList(person.toLowerCase()).contains(movie)) {
                         movieTree.insertData(person.toLowerCase(), movie);
                     }
                 }
 
                 for (String studio : studios) {
-                    studioTree.insert(studio.toLowerCase());
+                    if (!studioTree.findKey(studio.toLowerCase())) {
+                        studioTree.insert(studio.toLowerCase());
+                    }
                     if (!studioTree.findDataList(studio.toLowerCase()).contains(movie)) {
                         studioTree.insertData(studio.toLowerCase(), movie);
                     }
                 }
 
                 for (String person : cast) {
-                    ratingTree.insert(person.toLowerCase());
+                    if (!ratingTree.findKey(person.toLowerCase())) {
+                        ratingTree.insert(person.toLowerCase());
+                    }
                     if (!ratingTree.findDataList(person.toLowerCase()).contains(rating)) {
                         ratingTree.insertData(person.toLowerCase(), rating);
                     }
@@ -85,20 +91,31 @@ public class SearchEngine {
         // process query
         String[] keys = query.toLowerCase().split(" ");
 
-        LinkedList<String> output = new LinkedList<>();
-        output.addAll(searchTree.findDataList(keys[0]));
-
+        LinkedList<String> output = new LinkedList<>(searchTree.findDataList(keys[0]));
+        System.out.println(output);
         for (int i = 1; i < keys.length; i++) {
+            LinkedList<String> list = searchTree.findDataList(keys[i]);
+            System.out.println(list);
+
             output.retainAll(searchTree.findDataList(keys[i]));
-            output.addAll(searchTree.findDataList(keys[i]));
+            System.out.println(output);
         }
         // search and output intersection results
         // hint: list's addAll() and retainAll() methods could be helpful
 
         // search and output individual results
         // hint: list's addAll() and removeAll() methods could be helpful
+        print(query, output);
 
+        LinkedList<String> x = new LinkedList<>(output);
+        for (int i = 0; i < keys.length; i++) {
+            LinkedList<String> list = searchTree.findDataList(keys[i]);
+            list.removeAll(x);
+            print(keys[i], list);
+            x.addAll(list);
+        }
     }
+
 
     /**
      * Print output of query
@@ -133,20 +150,40 @@ public class SearchEngine {
         String fileName = args[0];
         int searchKind = Integer.parseInt(args[1]);
 
+        String query = "";
+        for (int i = 2; i < args.length; i++) {
+            query += args[i] + " ";
+        }
+
+//        System.out.println(query);
         // populate search trees
         populateSearchTrees(movieTree, studioTree, ratingTree, fileName);
+//        System.out.println(movieTree.getSize());
+//        inOrder(movieTree.getRoot());
+
+
 
         // choose the right tree to query
         switch (searchKind) {
             case 0:
-                searchMyQuery(movieTree, Arrays.toString(args));
+                searchMyQuery(movieTree, query);
                 break;
             case 1:
-                searchMyQuery(studioTree, Arrays.toString(args));
+                searchMyQuery(studioTree, query);
                 break;
             case 2:
-                searchMyQuery(ratingTree, Arrays.toString(args));
+                searchMyQuery(ratingTree, query);
                 break;
         }
     }
+
+    public static void inOrder(BSTree.BSTNode  curr) {
+        if (curr == null) {
+            return;
+        }
+        inOrder(curr.left);
+        System.out.print(curr.key + " " + curr.dataList);
+        inOrder(curr.right);
+    }
+
 }
