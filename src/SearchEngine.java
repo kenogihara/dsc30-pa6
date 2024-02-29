@@ -105,7 +105,7 @@ public class SearchEngine {
 
         // search and output individual results
         // hint: list's addAll() and removeAll() methods could be helpful
-        print(query, output);
+//        print(query, output);
 
         LinkedList<String> x = new LinkedList<>(output);
         for (int i = 0; i < keys.length; i++) {
@@ -155,13 +155,8 @@ public class SearchEngine {
             query += args[i] + " ";
         }
 
-//        System.out.println(query);
         // populate search trees
         populateSearchTrees(movieTree, studioTree, ratingTree, fileName);
-//        System.out.println(movieTree.getSize());
-//        inOrder(movieTree.getRoot());
-
-
 
         // choose the right tree to query
         switch (searchKind) {
@@ -176,14 +171,4 @@ public class SearchEngine {
                 break;
         }
     }
-
-    public static void inOrder(BSTree.BSTNode  curr) {
-        if (curr == null) {
-            return;
-        }
-        inOrder(curr.left);
-        System.out.print(curr.key + " " + curr.dataList);
-        inOrder(curr.right);
-    }
-
 }
