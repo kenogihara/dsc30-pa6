@@ -102,6 +102,7 @@ public class SearchEngine {
         // search and output individual results
         // hint: list's addAll() and removeAll() methods could be helpful
 
+        print(query, output);
         LinkedList<String> x = new LinkedList<>(output);
         for (int i = 0; i < keys.length; i++) {
             LinkedList<String> list = searchTree.findDataList(keys[i]);
