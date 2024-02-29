@@ -20,6 +20,9 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
 
     /* * * * * BST Node Inner Class * * * * */
 
+    /**
+     * BSTNode implementation.
+     */
     protected class BSTNode {
 
         T key;
@@ -281,6 +284,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
      *
      * @param key  Target key
      * @param data To be added to key's LinkedList
+     * @param root which is the root node.
      * @return a node.
      */
     private BSTNode insertDataH(BSTNode root, T key, T data) {
@@ -367,6 +371,9 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
 
     /* * * * * BST Iterator * * * * */
 
+    /**
+     * BSTree Iterator implementation.
+     */
     public class BSTree_Iterator implements Iterator<T> {
         private Stack<BSTNode> stack;
         public BSTree_Iterator() {
