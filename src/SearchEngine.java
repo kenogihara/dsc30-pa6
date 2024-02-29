@@ -152,7 +152,6 @@ public class SearchEngine {
 
         // populate search trees
         populateSearchTrees(movieTree, studioTree, ratingTree, fileName);
-
         // choose the right tree to query
         switch (searchKind) {
             case 0:
