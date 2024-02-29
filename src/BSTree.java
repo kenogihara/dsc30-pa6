@@ -180,7 +180,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
     /**
      * Insert a key into BST
      * 
-     * @param key
+     * @param key which is a node.
      * @return true if insertion is successful and false otherwise
      * @throws NullPointerException if key is null
      */
@@ -276,6 +276,13 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
 
     }
 
+    /**
+     * Helper method that inserts 'data' into the LinkedList of the node whose key is 'key'
+     *
+     * @param key  Target key
+     * @param data To be added to key's LinkedList
+     * @return a node.
+     */
     private BSTNode insertDataH(BSTNode root, T key, T data) {
         if (root == null) {
             return new BSTNode(null, null, new LinkedList<>(), key);
@@ -344,7 +351,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
     }
 
     /**
-     * Helper for the findHeight method
+     * Helper method for the findHeight method
      *
      * @param root Root node
      * @return The height of the tree, -1 if BST is empty
