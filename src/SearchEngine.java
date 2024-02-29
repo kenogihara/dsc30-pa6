@@ -150,6 +150,8 @@ public class SearchEngine {
             query += args[i] + " ";
         }
 
+        query = query.strip();
+
         // populate search trees
         populateSearchTrees(movieTree, studioTree, ratingTree, fileName);
         // choose the right tree to query
