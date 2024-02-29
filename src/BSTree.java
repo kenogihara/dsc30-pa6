@@ -381,16 +381,33 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
             leftMostPath(root);
         }
 
+        /**
+         * Method that keeps track of the leftmost path of the tree.
+         *
+         * @param root of the tree.
+         */
         private void leftMostPath(BSTNode root) {
             while (root != null) {
                stack.push(root);
                root = root.getLeft();
             }
         }
+
+        /**
+         * Method that checks if there is a next item in the stack.
+         *
+         * @return a boolean that indicates whether there is an item next in the stack.
+         */
         public boolean hasNext() {
             return !stack.isEmpty();
         }
 
+        /**
+         * Method that outputs the value of the following item in the stack.
+         *
+         * @return the key of the current node in the stack.
+         * @throws NoSuchElementException if there is no next item.
+         */
         public T next() {
             if (!hasNext()) {
                 throw new NoSuchElementException("no next item");
@@ -401,6 +418,11 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
         }
     }
 
+    /**
+     * Method that returns the iterated BS Tree.
+     *
+     * @return BSTree Iterator.
+     */
     public Iterator<T> iterator() {
         return new BSTree_Iterator();
     }
