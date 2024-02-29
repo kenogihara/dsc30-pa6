@@ -87,13 +87,11 @@ public class SearchEngine {
      */
     public static void searchMyQuery(BSTree<String> searchTree, String query) {
 
-        /* TODO */
         // process query
         String[] keys = query.toLowerCase().split(" ");
 
         LinkedList<String> output = new LinkedList<>(searchTree.findDataList(keys[0]));
         for (int i = 1; i < keys.length; i++) {
-            LinkedList<String> list = searchTree.findDataList(keys[i]);
             output.retainAll(searchTree.findDataList(keys[i]));
         }
         // search and output intersection results
@@ -103,12 +101,13 @@ public class SearchEngine {
         // hint: list's addAll() and removeAll() methods could be helpful
 
         print(query, output);
-        LinkedList<String> x = new LinkedList<>(output);
+
+        LinkedList<String> history = new LinkedList<>(output);
         for (int i = 0; i < keys.length; i++) {
             LinkedList<String> list = searchTree.findDataList(keys[i]);
-            list.removeAll(x);
+            list.removeAll(history);
             print(keys[i], list);
-            x.addAll(list);
+            history.addAll(list);
         }
     }
 
